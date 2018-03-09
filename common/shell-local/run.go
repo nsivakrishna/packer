@@ -146,7 +146,8 @@ func createFlattenedEnvVars(config *Config) (flattened string) {
 
 	// Re-assemble vars surrounding value with single quotes and flatten
 	if runtime.GOOS == "windows" {
-		createEnvVarsSourceFileWindows()
+		log.Printf("MEGAN NEED TO IMPLEMENT")
+		// createEnvVarsSourceFileWindows()
 	}
 	for _, key := range keys {
 		flattened += fmt.Sprintf("%s='%s' ", key, envVars[key])
@@ -154,7 +155,7 @@ func createFlattenedEnvVars(config *Config) (flattened string) {
 	return
 }
 
-func createFlattenedEnvVarsWindows(
-// The default shell, cmd, can set vars via dot sourcing
-// set TESTXYZ=XYZ
-)
+// func createFlattenedEnvVarsWindows(
+// // The default shell, cmd, can set vars via dot sourcing
+// // set TESTXYZ=XYZ
+// )

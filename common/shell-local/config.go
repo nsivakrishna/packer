@@ -45,7 +45,7 @@ type Config struct {
 	// can be used to inject the environment_vars into the environment.
 	ExecuteCommand []string `mapstructure:"execute_command"`
 
-	UseLinuxPathing bool `mapstructure:use_linux_pathing`
+	UseLinuxPathing bool `mapstructure:"use_linux_pathing"`
 
 	Ctx interpolate.Context
 }
@@ -147,10 +147,11 @@ func Validate(config *Config) error {
 	}
 	if config.UseLinuxPathing {
 		for index, script := range config.Scripts {
-			config.Scripts[index], err = convertToWindowsBashPath(script)
+			converted, err := convertToLinuxPath(script)
 			if err != nil {
 				return err
 			}
+			config.Scripts[index] = converted
 		}
 	}
 
